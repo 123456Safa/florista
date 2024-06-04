@@ -1,0 +1,601 @@
+/* Importation de la police Rubik depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+/* Définition des variables de couleurs et de styles globaux */
+:root{
+   --pink:#e84393; /* Rose */
+   --red:#c0392b; /* Rouge */
+   --orange:#f39c12; /* Orange */
+   --black:#333; /* Noir */
+   --white:#fff; /* Blanc */
+   --light-color:#666; /* Couleur de texte claire */
+   --light-white:#ccc; /* Blanc clair */
+   --light-bg:#f5f5f5; /* Fond clair */
+   --border:.2rem solid var(--black); /* Bordure */
+   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1); /* Ombre */
+}
+
+/* Réinitialisation des styles et définition des styles par défaut */
+*{
+   font-family: 'Rubik', sans-serif; /* Police par défaut */
+   margin:0; padding:0; /* Réinitialisation des marges et des espacements */
+   box-sizing: border-box; /* La taille inclut les bordures et le rembourrage */
+   outline: none; border:none; /* Suppression des bordures et des contours */
+   text-decoration: none; /* Suppression du soulignement des liens */
+   transition:all .2s linear; /* Transition fluide pour tous les éléments */
+}
+
+/* Styles de la sélection de texte */
+*::selection{
+   background-color: var(--pink); /* Fond rose pour la sélection */
+   color:var(--white); /* Texte blanc pour la sélection */
+}
+
+/* Styles de la barre de défilement de Chrome */
+*::-webkit-scrollbar{
+   height: .5rem; /* Hauteur */
+   width: 1rem; /* Largeur */
+}
+
+/* Styles de la piste de la barre de défilement de Chrome */
+*::-webkit-scrollbar-track{
+   background-color: transparent; /* Fond transparent */
+}
+
+/* Styles du pouce de la barre de défilement de Chrome */
+*::-webkit-scrollbar-thumb{
+   background-color: var(--pink); /* Couleur rose pour le pouce */
+}
+
+/* Définition de la taille de la police de base en fonction de la résolution */
+html{
+   font-size: 62.5%; /* Équivalent à 10px pour faciliter le calcul */
+   overflow-x: hidden; /* Masquer la barre de défilement horizontale */
+   scroll-behavior: smooth; /* Défilement fluide */
+   scroll-padding-top: 6.5rem; /* Espacement supplémentaire pour les ancres */
+}
+
+/* Styles globaux du corps de la page */
+body{
+   background: var(--light-bg); /* Fond clair */
+}
+
+/* Styles globaux des sections de la page */
+section{
+   padding:3rem 2rem; /* Espacement intérieur */
+}
+
+/* Styles du titre principal */
+.title{
+   text-align: center; /* Centrage du texte */
+   margin-bottom: 2rem; /* Marge inférieure */
+   color:var(--black); /* Couleur du texte */
+   text-transform: uppercase; /* Conversion en majuscules */
+   font-size: 4rem; /* Taille de police */
+}
+
+/* Styles des boutons généraux */
+.btn,
+.delete-btn,
+.option-btn{
+   display: inline-block; /* Affichage en ligne */
+   border-radius: .5rem; /* Bordures arrondies */
+   margin-top: 1rem; /* Marge supérieure */
+   font-size: 1.8rem; /* Taille de police */
+   color:var(--white); /* Couleur du texte */
+   cursor: pointer; /* Curseur pointer */
+   padding:1rem 3rem; /* Espacement intérieur */
+   text-transform: capitalize; /* Conversion en majuscules */
+}
+
+/* Styles des messages d'erreur */
+.message{
+   position: sticky; /* Position collante */
+   top:0; /* Haut de la page */
+   margin:0 auto; /* Centrage horizontal */
+   max-width: 1200px; /* Largeur maximale */
+   background-color: var(--light-bg); /* Fond clair */
+   display: flex; /* Affichage en ligne */
+   align-items: center; /* Alignement vertical */
+   padding:2rem; /* Espacement intérieur */
+   gap:1.5rem; /* Espacement entre les éléments */
+   z-index: 10000; /* Z-index élevé pour la superposition */
+   justify-content: space-between; /* Répartition uniforme des éléments */
+}
+
+/* Styles du texte dans les messages */
+.message span{
+   color:var(--black); /* Couleur du texte */
+   font-size: 2rem; /* Taille de police */
+}
+
+/* Styles des icônes dans les messages */
+.message i{
+   font-size: 2.5rem; /* Taille de police */
+   color:var(--red); /* Couleur rouge */
+   cursor: pointer; /* Curseur pointer */
+}
+
+/* Styles des icônes au survol */
+.message i:hover{
+   transform: rotate(90deg); /* Rotation de 90 degrés */
+}
+
+/* Styles pour les cas où aucune donnée n'est disponible */
+.empty{
+   padding:1.5rem; /* Espacement intérieur */
+   font-size: 2rem; /* Taille de police */
+   color:var(--red); /* Couleur rouge */
+   border:var(--border); /* Bordure */
+   box-shadow: var(--box-shadow); /* Ombre */
+   text-align: center; /* Centrage du texte */
+   background-color: var(--white); /* Fond blanc */
+   border-radius: .5rem; /* Bordures arrondies */
+   text-transform: capitalize; /* Conversion en majuscules */
+}
+
+/* Styles des boutons principaux */
+.btn{
+   background-color: var(--pink); /* Fond rose */
+}
+
+/* Styles des boutons de suppression */
+.delete-btn{
+   background-color: var(--red); /* Fond rouge */
+}
+
+/* Styles des boutons d'option */
+.option-btn{
+   background-color: var(--orange); /* Fond orange */
+}
+
+/* Styles des boutons au survol */
+.btn:hover,
+.delete-btn:hover,
+.option-btn:hover{
+   background-color: var(--black); /* Fond noir au survol */
+}
+
+/* Animation de fondu entrant */
+@keyframes fadeIn{
+   0%{
+      transform: translateY(1rem); /* Translation vers le bas */
+   }
+}
+
+/* Styles de l'en-tête de la page */
+.header{
+   position: sticky; /* Position collante */
+   top:0; left:0; right:0; /* Positionnement en haut et aux extrémités */
+   z-index: 1000; /* Z-index élevé pour la superposition */
+   background-color: var(--white); /* Fond blanc */
+   box-shadow: var(--box-shadow); /* Ombre */
+}
+
+/* Styles des éléments flexibles de l'en-tête */
+.header .flex{
+   display: flex; /* Affichage en ligne */
+   align-items: center; /* Alignement vertical */
+   justify-content: space-between; /* Répartition uniforme des éléments */
+   padding:2rem; /* Espacement intérieur */
+   max-width: 1200px; /* Largeur maximale */
+   margin:0 auto; /* Centrage horizontal */
+   position: relative; /* Position relative */
+}
+
+/* Styles de la boîte de compte utilisateur */
+.header .flex .account-box{
+   position: absolute; /* Position absolue */
+   top:120%; right:2rem; /* Positionnement en haut à droite */
+   width: 33rem; /* Largeur */
+   border-radius: .5rem; /* Bordures arrondies */
+   box-shadow: var(--box-shadow); /* Ombre */
+   background-color: var(--white); /* Fond blanc */
+   padding:2rem; /* Espacement intérieur */
+   text-align: center; /* Centrage du texte */
+   border:var(--border); /* Bordure */
+   display: none; /* Masquer par défaut */
+   animation: fadeIn .2s linear; /* Animation de fondu entrant */
+}
+
+/* Styles de la boîte de compte utilisateur active */
+.header .flex .account-box.active{
+   display: inline-block; /* Affichage en ligne */
+}
+
+/* Styles du texte dans la boîte de compte utilisateur */
+.header .flex .account-box p{
+   padding-bottom: 1rem; /* Espacement inférieur */
+   font-size: 2rem; /* Taille de police */
+   color:var(--light-color); /* Couleur du texte clair */
+   line-height: 1.5; /* Hauteur de ligne */
+}
+
+/* Styles des liens dans la boîte de compte utilisateur */
+.header .flex .account-box p span{
+   color:var(--pink); /* Couleur rose */
+}
+
+/* Styles des éléments supplémentaires dans la boîte de compte utilisateur */
+.header .flex .account-box div{
+   font-size: 2rem; /* Taille de police */
+   margin-top: 2rem; /* Marge supérieure */
+   color:var(--light-color); /* Couleur du texte clair */
+}
+
+/* Styles des liens dans la boîte de compte utilisateur */
+.header .flex .account-box div a{
+   color:var(--orange); /* Couleur orange */
+}
+
+/* Styles des liens au survol dans la boîte de compte utilisateur */
+.header .flex .account-box div a:hover{
+   text-decoration: underline; /* Soulignement au survol */
+}
+
+/* Styles des icônes dans l'en-tête */
+.header .flex .icons div{
+   font-size: 2.5rem; /* Taille de police */
+   margin-left: 1.7rem; /* Marge à gauche */
+   cursor: pointer; /* Curseur pointer */
+   color:var(--black); /* Couleur noire */
+}
+
+/* Styles des icônes au survol dans l'en-tête */
+.header .flex .icons div:hover{
+   color:var(--pink); /* Couleur rose au survol */
+}
+
+/* Styles des liens de la barre de navigation dans l'en-tête */
+.header .flex .navbar a{
+   margin:0 1rem; /* Marge horizontale */
+   font-size: 2rem; /* Taille de police */
+   color:var(--light-color); /* Couleur du texte clair */
+}
+
+/* Styles des liens au survol dans la barre de navigation */
+.header .flex .navbar a:hover{
+   text-decoration: underline; /* Soulignement au survol */
+   color:var(--pink); /* Couleur rose */
+}
+
+/* Styles du logo dans l'en-tête */
+.header .flex .logo{
+   font-size: 2.5rem; /* Taille de police */
+   color:var(--black); /* Couleur noire */
+}
+
+/* Styles du texte du logo dans l'en-tête */
+.header .flex .logo span{
+   color:var(--pink); /* Couleur rose */
+}
+
+/* Styles du bouton de menu dans l'en-tête */
+#menu-btn{
+   display: none; /* Masquer par défaut */
+}
+
+/* Styles du conteneur principal du tableau de bord */
+.dashboard .box-container{
+   display: grid; /* Affichage en grille */
+   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr)); /* Répartition automatique des colonnes */
+   gap:1.5rem; /* Espacement entre les éléments */
+   align-items: flex-start; /* Alignement vertical en haut */
+   max-width: 1200px; /* Largeur maximale */
+   margin: 0 auto; /* Centrage horizontal */
+}
+
+/* Styles des boîtes individuelles dans le tableau de bord */
+.dashboard .box-container .box{
+   text-align: center; /* Centrage du texte */
+   border:var(--border); /* Bordure */
+   background-color: var(--white); /* Fond blanc */
+   box-shadow: var(--box-shadow); /* Ombre */
+   padding:2rem; /* Espacement intérieur */
+   border-radius: .5rem; /* Bordures arrondies */
+}
+
+/* Styles du titre dans les boîtes du tableau de bord */
+.dashboard .box-container .box h3{
+   font-size: 4.5rem; /* Taille de police */
+   color:var(--black); /* Couleur noire */
+}
+
+/* Styles du texte dans les boîtes du tableau de bord */
+.dashboard .box-container .box p{
+   padding:1.5rem; /* Espacement intérieur */
+   border-radius: .5rem; /* Bordures arrondies */
+   background-color: var(--light-bg); /* Fond clair */
+   color:var(--light-color); /* Couleur du texte clair */
+   border:var(--border); /* Bordure */
+   margin-top: 2rem; /* Marge supérieure */
+   font-size: 2rem; /* Taille de police */
+}
+
+/* Styles du formulaire d'ajout de produits */
+.add-products form{
+   max-width: 50rem; /* Largeur maximale */
+   border-radius: .5rem; /* Bordures arrondies */
+   background-color: var(--white); /* Fond blanc */
+   border:var(--border); /* Bordure */
+   padding:2rem; /* Espacement intérieur */
+   text-align: center; /* Centrage du texte */
+   margin:0 auto; /* Centrage horizontal */
+   box-shadow: var(--box-shadow); /* Ombre */
+}
+
+/* Styles du titre dans le formulaire d'ajout de produits */
+.add-products form h3{
+   font-size: 2.5rem; /* Taille de police */
+   text-transform: uppercase; /* Conversion en majuscules */
+   color:var(--black); /* Couleur noire */
+   margin-bottom: 1rem; /* Marge inférieure */
+}
+
+/* Styles des champs de saisie dans le formulaire d'ajout de produits */
+.add-products form .box{
+   width: 100%; /* Largeur */
+   margin:1rem 0; /* Marge */
+   font-size: 1.8rem; /* Taille de police */
+   color:var(--black); /* Couleur noire */
+   border-radius: .5rem; /* Bordures arrondies */
+   background-color: var(--light-bg); /* Fond clair */
+   padding:1.2rem 1.4rem; /* Espacement intérieur */
+   border:var(--border); /* Bordure */
+}
+
+/* Styles du champ de texte dans le formulaire d'ajout de produits */
+.add-products form textarea{
+   height: 15rem; /* Hauteur */
+   resize: none; /* Désactiver le redimensionnement */
+}
+
+/* Styles du conteneur principal de la page de visualisation des produits */
+.show-products .box-container{
+   display: grid; /* Affichage en grille */
+   grid-template-columns: repeat(auto-fit, 30rem); /* Répartition automatique des colonnes */
+   gap:1.5rem; /* Espacement entre les éléments */
+   align-items: flex-start; /* Alignement vertical en haut */
+   max-width: 1200px; /* Largeur maximale */
+   margin: 0 auto; /* Centrage horizontal */
+   justify-content: center; /* Centrage horizontal */
+}
+
+/* Styles des boîtes individuelles dans la page de visualisation des produits */
+.show-products .box-container .box{
+   text-align: center; /* Centrage du texte */
+   padding:2rem; /* Espacement intérieur */
+   border:var(--border); /* Bordure */
+   background-color: var(--white); /* Fond blanc */
+   box-shadow: var(--box-shadow); /* Ombre */
+   border-radius: .5rem; /* Bordures arrondies */
+   position: relative; /* Position relative */
+}
+
+/* Styles de l'image dans les boîtes de la page de visualisation des produits */
+.show-products .box-container .box .image{
+   height: 30rem; /* Hauteur */
+   margin-bottom: .5rem; /* Marge inférieure */
+}
+
+/* Styles du prix dans les boîtes de la page de visualisation des produits */
+.show-products .box-container .box .price{
+   background-color: var(--pink); /* Fond rose */
+   position: absolute; /* Position absolue */
+   top:1rem; left:1rem; /* Positionnement en haut à gauche */
+   border-radius: .5rem; /* Bordures arrondies */
+   color:var(--white); /* Couleur blanche */
+   padding:1rem; /* Espacement intérieur */
+   font-size: 2rem; /* Taille de police */
+}
+
+/* Styles du nom dans les boîtes de la page de visualisation des produits */
+.show-products .box-container .box .name{
+   margin:1rem 0; /* Marge */
+   font-size: 2rem; /* Taille de police */
+   color:var(--black); /* Couleur noire */
+}
+
+/* Styles des détails dans les boîtes de la page de visualisation des produits */
+.show-products .box-container .box .details{
+   line-height: 1.5; /* Hauteur de ligne */
+   color:var(--light-color); /* Couleur du texte clair */
+   font-size: 1.5rem; /* Taille de police */
+   padding:.5rem 0; /* Espacement intérieur */
+}
+
+/* Styles du formulaire de mise à jour des produits */
+.update-product form{
+   max-width: 50rem; /* Largeur maximale */
+   border-radius: .5rem; /* Bordures arrondies */
+   background-color: var(--white); /* Fond blanc */
+   border:var(--border); /* Bordure */
+   padding:2rem; /* Espacement intérieur */
+   text-align: center; /* Centrage du texte */
+   margin:0 auto; /* Centrage horizontal */
+   box-shadow: var(--box-shadow); /* Ombre */
+}
+
+/* Styles du titre dans le formulaire de mise à jour des produits */
+.update-product form h3{
+   font-size: 2.5rem; /* Taille de police */
+   text-transform: uppercase; /* Conversion en majuscules */
+   color:var(--black); /* Couleur noire */
+   margin-bottom: 1rem; /* Marge inférieure */
+}
+
+/* Styles des champs de saisie dans le formulaire de mise à jour des produits */
+.update-product form .box{
+   width: 100%; /* Largeur */
+   margin:1rem 0; /* Marge */
+   font-size: 1.8rem; /* Taille de police */
+   color:var(--black); /* Couleur noire */
+   border-radius: .5rem; /* Bordures arrondies */
+   background-color: var(--light-bg); /* Fond clair */
+   padding:1.2rem 1.4rem; /* Espacement intérieur */
+   border:var(--border); /* Bordure */
+}
+
+/* Styles du champ de texte dans le formulaire de mise à jour des produits */
+.update-product form textarea{
+   height: 15rem; /* Hauteur */
+   resize: none; /* Désactiver le redimensionnement */
+}
+
+/* Styles de l'image dans le formulaire de mise à jour des produits */
+.update-product .image{
+   height: 30rem; /* Hauteur */
+   border:var(--border); /* Bordure */
+   border-radius: .5rem; /* Bordures arrondies */
+}
+
+/* Styles du conteneur principal de la page des commandes passées */
+.placed-orders .box-container{
+   display: grid; /* Affichage en grille */
+   grid-template-columns: repeat(auto-fit, 33rem); /* Répartition automatique des colonnes */
+   gap:1.5rem; /* Espacement entre les éléments */
+   align-items: flex-start; /* Alignement vertical en haut */
+   max-width: 1200px; /* Largeur maximale */
+   margin: 0 auto; /* Centrage horizontal */
+   justify-content: center; /* Centrage horizontal */
+}
+
+/* Styles des boîtes individuelles dans la page des commandes passées */
+.placed-orders .box-container .box{
+   padding:2rem; /* Espacement intérieur */
+   border:var(--border); /* Bordure */
+   background-color: var(--white); /* Fond blanc */
+   box-shadow: var(--box-shadow); /* Ombre */
+   border-radius: .5rem; /* Bordures arrondies */
+}
+
+/* Styles du texte dans les boîtes de la page des commandes passées */
+.placed-orders .box-container .box p{
+   margin-bottom: 1rem; /* Marge inférieure */
+   font-size: 2rem; /* Taille de police */
+   color:var(--light-color); /* Couleur du texte clair */
+}
+
+/* Styles des liens dans les boîtes de la page des commandes passées */
+.placed-orders .box-container .box p span{
+   color:var(--pink); /* Couleur rose */
+}
+
+/* Styles du formulaire dans les boîtes de la page des commandes passées */
+.placed-orders .box-container .box form{
+   margin-top: 1rem; /* Marge supérieure */
+   text-align: center; /* Centrage du texte */
+}
+
+/* Styles des menus déroulants dans les boîtes de la page des commandes passées */
+.placed-orders .box-container .box select{
+   margin: 1rem 0; /* Marge */
+   font-size: 1.8rem; /* Taille de police */
+   color:var(--black); /* Couleur noire */
+   border-radius: .5rem; /* Bordures arrondies */
+   background-color: var(--light-bg); /* Fond clair */
+   padding:1rem; /* Espacement intérieur */
+   border:var(--border); /* Bordure */
+}
+
+/* Styles des boutons de la page des commandes passées */
+.placed-orders .box-container .box button{
+   margin-top: 1rem; /* Marge supérieure */
+}
+
+/* Styles pour les sections de pied de page */
+footer{
+   background-color: var(--black); /* Fond noir */
+   color:var(--light-white); /* Couleur du texte clair */
+   text-align: center; /* Centrage du texte */
+   padding:3rem 0; /* Espacement intérieur */
+   margin-top: 3rem; /* Marge supérieure */
+}
+
+/* Styles pour les liens dans le pied de page */
+footer a{
+   color:var(--pink); /* Couleur rose */
+   margin:0 .5rem; /* Marge horizontale */
+   font-size: 2rem; /* Taille de police */
+}
+
+/* Styles pour les liens au survol dans le pied de page */
+footer a:hover{
+   text-decoration: underline; /* Soulignement au survol */
+}
+
+/* Styles pour les conteneurs flexibles */
+.flex{
+   display: flex; /* Affichage en ligne */
+   align-items: center; /* Alignement vertical */
+   justify-content: space-between; /* Répartition uniforme des éléments */
+}
+
+/* Styles pour les icônes dans les conteneurs flexibles */
+.flex i{
+   font-size: 3rem; /* Taille de police */
+   color:var(--light-color); /* Couleur du texte clair */
+   cursor: pointer; /* Curseur pointer */
+}
+
+/* Styles pour les boutons dans les conteneurs flexibles */
+.flex button{
+   padding:1rem 2rem; /* Espacement intérieur */
+   font-size: 2rem; /* Taille de police */
+   color:var(--light-color); /* Couleur du texte clair */
+   background-color: var(--pink); /* Fond rose */
+   border-radius: .5rem; /* Bordures arrondies */
+   border: none; /* Supprimer la bordure */
+   cursor: pointer; /* Curseur pointer */
+}
+
+/* Styles pour les boutons au survol dans les conteneurs flexibles */
+.flex button:hover{
+   background-color: var(--red); /* Fond rouge au survol */
+}
+
+/* Styles pour les conteneurs de tableau */
+.table-container{
+   overflow-x: auto; /* Défilement horizontal */
+}
+
+/* Styles pour les tableaux */
+table{
+   border-collapse: collapse; /* Fusionner les bordures de cellules */
+   width: 100%; /* Largeur */
+   font-size: 1.6rem; /* Taille de police */
+   color:var(--black); /* Couleur noire */
+}
+
+/* Styles pour les en-têtes de tableau */
+th{
+   background-color: var(--pink); /* Fond rose */
+   color:var(--white); /* Couleur blanche */
+   padding:1.5rem; /* Espacement intérieur */
+   text-align: left; /* Alignement à gauche */
+}
+
+/* Styles pour les cellules de tableau */
+td{
+   border:var(--border); /* Bordure */
+   padding:1.5rem; /* Espacement intérieur */
+}
+
+/* Styles pour les liens dans les cellules de tableau */
+td a{
+   color:var(--pink); /* Couleur rose */
+}
+
+/* Styles pour les boutons dans les cellules de tableau */
+td button{
+   background-color: transparent; /* Fond transparent */
+   border:none; /* Supprimer la bordure */
+   font-size: 1.6rem; /* Taille de police */
+   color:var(--pink); /* Couleur rose */
+   cursor: pointer; /* Curseur pointer */
+}
+
+/* Styles pour les boutons au survol dans les cellules de tableau */
+td button:hover{
+   text-decoration: underline; /* Soulignement au survol */
+}
